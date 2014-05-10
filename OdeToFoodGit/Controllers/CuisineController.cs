@@ -11,9 +11,11 @@ namespace OdeToFoodGit.Controllers
         //
         // GET: /Cuisine/
 
-        public ActionResult Index()
+        public ActionResult Search(string name = "French")
         {
-            return View();
+            var message = Server.HtmlEncode(name);
+
+            return Content(message);
         }
 
     }
