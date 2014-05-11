@@ -154,3 +154,7 @@ $RECYCLE.BIN/
 
 # Mac desktop service store files
 .DS_Store
+OdeToFoodGit/App_Data/OdeToFoodDb.mdf
+OdeToFoodGit/App_Data/OdeToFoodDb_log.ldf
+OdeToFoodGit/App_Data/OdeToFoodGit.Models.OdeToFoodDb.mdf
+OdeToFoodGit/App_Data/OdeToFoodGit.Models.OdeToFoodDb_log.ldf

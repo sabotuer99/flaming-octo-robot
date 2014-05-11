@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OdeToFoodGit.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,16 +9,38 @@ namespace OdeToFoodGit.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index()
+        OdeToFoodDb _db = new OdeToFoodDb();
+
+        public ActionResult Index(string searchTerm = null)
         {
-            var controller = RouteData.Values["controller"];
-            var action = RouteData.Values["action"];
-            var id = RouteData.Values["id"];
+            //var model =
+            //    from r in _db.Restaurants
+            //    orderby r.Reviews.Average(review => review.Rating) descending
+            //    select new RestaurantListViewModel{
+            //        Id = r.Id,
+            //        Name = r.Name,
+            //        City = r.City,
+            //        Country = r.Country,
+            //        CountOfReviews = r.Reviews.Count()
+            //    };
 
-            var message = String.Format("{0}::{1}  {2}", controller, action ,id);
+            var model =
+                _db.Restaurants
+                .OrderByDescending(r => r.Reviews.Average(review => review.Rating))
+                .Where(r => searchTerm == null || r.Name.StartsWith(searchTerm))
+                .Take(10)
+                .Select(r => new RestaurantListViewModel
+                {
+                    Id = r.Id,
+                    Name = r.Name,
+                    City = r.City,
+                    Country = r.Country,
+                    CountOfReviews = r.Reviews.Count()
+                }
+                );
 
-            ViewBag.Message = message;
-            return View();
+
+            return View(model);
         }
 
         public ActionResult About()
@@ -32,6 +55,16 @@ namespace OdeToFoodGit.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (_db != null)
+            {
+                _db.Dispose();
+            }
+            
+            base.Dispose(disposing);
         }
     }
 }
