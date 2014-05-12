@@ -1,19 +1,17 @@
 ﻿@model OdeToFoodGit.Models.RestaurantReview
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Create";
 }
 
-<h2>Edit</h2>
+<h2>Create</h2>
 
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
     <fieldset>
-        <legend>Edit Review</legend>
-
-        @Html.HiddenFor(model => model.Id)
+        <legend>New Review</legend>
 
         <div class="editor-label">
             @Html.LabelFor(model => model.Rating)
@@ -39,17 +37,14 @@
             @Html.ValidationMessageFor(model => model.ReviewerName)
         </div>
 
-        @Html.HiddenFor(model => model.RestaurantId)
-
         <p>
-            <input type="submit" value="Save" />
+            <input type="submit" value="Create" />
         </p>
     </fieldset>
 }
 
 <div>
-    <a href="../../Reviews/Index/@Model.RestaurantId" >Back to List</a>
-    @*@Html.ActionLink("Back to List", "Index")*@
+    @Html.ActionLink("Back to List", "Index")
 </div>
 
 @section Scripts {
