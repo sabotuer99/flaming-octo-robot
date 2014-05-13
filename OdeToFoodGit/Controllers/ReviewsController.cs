@@ -25,6 +25,7 @@ namespace OdeToFoodGit.Controllers
         [HttpGet]
         public ActionResult Create(int restaurantId)
         {
+            ViewBag.restaurantId = restaurantId;
             return View();
         }
 

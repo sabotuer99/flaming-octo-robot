@@ -44,9 +44,10 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    <a href="../../Reviews/Index/@ViewBag.restaurantId">Back to List</a>
+    @*Html.ActionLink("Back to List", "Index")*@
 </div>
 
 @section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
+   
 }
