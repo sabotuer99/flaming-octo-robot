@@ -9,7 +9,10 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @if (User.IsInRole("admin")) { 
+        @Html.ActionLink("Create New", "Create")
+    }
+
 </p>
 <table>
     <tr>

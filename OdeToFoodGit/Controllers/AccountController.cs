@@ -249,6 +249,7 @@ namespace OdeToFoodGit.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
+        //[RequireHttps]
         public ActionResult ExternalLoginConfirmation(RegisterExternalLoginModel model, string returnUrl)
         {
             string provider = null;
