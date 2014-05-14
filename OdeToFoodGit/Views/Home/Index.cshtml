@@ -1,4 +1,4 @@
-﻿@model IEnumerable<OdeToFoodGit.Models.RestaurantListViewModel>
+﻿@model IPagedList<RestaurantListViewModel>
 
 @{
     ViewBag.Title = "Home Page";
@@ -12,16 +12,5 @@
 
 </form>
 
-@*@using(Ajax.BeginForm(
-    new AjaxOptions
-    {
-        HttpMethod="get",
-        InsertionMode = InsertionMode.Replace,
-        UpdateTargetId = "restaurantList"
-    }))
-{ 
-    <input type="search" name="searchTerm" />
-    <input type="submit" value="Search By Name" />
-}*@
 
 @Html.Partial("_Restaurants", Model)
