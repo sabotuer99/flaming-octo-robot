@@ -26,18 +26,10 @@ namespace OdeToFoodGit.Controllers
             return Json(model, JsonRequestBehavior.AllowGet);
         }
 
+
+        [OutputCache(Duration=60)]
         public ActionResult Index(string searchTerm = null, int page = 1)
         {
-            //var model =
-            //    from r in _db.Restaurants
-            //    orderby r.Reviews.Average(review => review.Rating) descending
-            //    select new RestaurantListViewModel{
-            //        Id = r.Id,
-            //        Name = r.Name,
-            //        City = r.City,
-            //        Country = r.Country,
-            //        CountOfReviews = r.Reviews.Count()
-            //    };
 
             var model =
                 _db.Restaurants
