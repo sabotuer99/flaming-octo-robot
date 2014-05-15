@@ -55,9 +55,11 @@ namespace OdeToFoodGit.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your app description page.";
+            var model = new AboutModel();
+            model.Name = "Troy W.";
+            model.Location = "Wyoming, USA";
 
-            return View();
+            return View(model);
         }
 
         public ActionResult Contact()
