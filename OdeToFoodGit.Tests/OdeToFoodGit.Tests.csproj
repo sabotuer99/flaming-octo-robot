@@ -119,6 +119,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Features\IRateAlgorithm.cs" />
     <Compile Include="Features\RatingResult.cs" />
     <Compile Include="Features\RestaurantRater.cs" />
     <Compile Include="Features\UnitTest1.cs" />

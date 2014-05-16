@@ -8,44 +8,55 @@ namespace OdeToFoodGit.Tests.Features
 {
     class RestaurantRater
     {
-        private Restaurant _restauant;
+        private Restaurant _restaurant;
 
         public RestaurantRater(Restaurant restaurant)
         {
             // TODO: Complete member initialization
-            this._restauant = restaurant;
+            this._restaurant = restaurant;
         }
 
-        public RatingResult ComputeRating(int numberOfReviews)
+        public RatingResult ComputeResult(IRatingAlgorithm algorithm,
+                                          int numberOfReviews)
         {
-            var result = new RatingResult();
-            result.Rating = (int)_restauant.Reviews.Average(r => r.Rating);
-            return result;
+            var filteredReviews = _restaurant.Reviews.Take(numberOfReviews);
+
+            return algorithm.Compute(filteredReviews.ToList());
         }
 
-        public RatingResult ComputeWeightedRate(int numberOfReviews)
-        {
-            var reviews = _restauant.Reviews.ToArray();
-            var result = new RatingResult();
-            var counter = 0;
-            var total = 0;
+        //
+        //  BEFORE REFACTORING
+        //
+        //public RatingResult ComputeRating(int numberOfReviews)
+        //{
+        //    var result = new RatingResult();
+        //    result.Rating = (int)_restauant.Reviews.Average(r => r.Rating);
+        //    return result;
+        //}
 
-            for (int i = 0; i < reviews.Count(); i++)
-            {
-                if (i < reviews.Count() / 2)
-                {
-                    counter += 2;
-                    total += reviews[i].Rating * 2;
-                }
-                else
-                {
-                    counter += 1;
-                    total += reviews[i].Rating;
-                }
-            }
+        //public RatingResult ComputeWeightedRate(int numberOfReviews)
+        //{
+        //    var reviews = _restauant.Reviews.ToArray();
+        //    var result = new RatingResult();
+        //    var counter = 0;
+        //    var total = 0;
 
-            result.Rating = total / counter;
-            return result;
-        }
+        //    for (int i = 0; i < reviews.Count(); i++)
+        //    {
+        //        if (i < reviews.Count() / 2)
+        //        {
+        //            counter += 2;
+        //            total += reviews[i].Rating * 2;
+        //        }
+        //        else
+        //        {
+        //            counter += 1;
+        //            total += reviews[i].Rating;
+        //        }
+        //    }
+
+        //    result.Rating = total / counter;
+        //    return result;
+        //}
     }
 }

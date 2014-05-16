@@ -30,7 +30,7 @@ namespace OdeToFoodGit.Tests.Features
             var data = BuildRestaurantAndReviews(ratings: 4);
 
             var rater = new RestaurantRater(data);
-            var result = rater.ComputeRating(10);
+            var result = rater.ComputeResult(new SimpleRatingAlgorithm(), 10);
 
             Assert.AreEqual(4, result.Rating);
 
@@ -42,9 +42,20 @@ namespace OdeToFoodGit.Tests.Features
             var data = BuildRestaurantAndReviews(ratings: new[] { 4, 8 });
 
             var rater = new RestaurantRater(data);
-            var result = rater.ComputeRating(10);
+            var result = rater.ComputeResult(new SimpleRatingAlgorithm(), 10);
 
             Assert.AreEqual(6, result.Rating);
+        }
+
+        [TestMethod]
+        public void Rating_Includes_Only_First_N_Reviews()
+        {
+            var data = BuildRestaurantAndReviews(1, 1, 1, 10, 10, 10);
+
+            var rater = new RestaurantRater(data);
+            var result = rater.ComputeResult(new SimpleRatingAlgorithm(), 3);
+
+            Assert.AreEqual(1, result.Rating);
         }
 
         [TestMethod]
@@ -53,7 +64,7 @@ namespace OdeToFoodGit.Tests.Features
             var data = BuildRestaurantAndReviews(ratings: new[] { 3, 9 });
 
             var rater = new RestaurantRater(data);
-            var result = rater.ComputeWeightedRate(10);
+            var result = rater.ComputeResult(new WeightedRatingAlgorithm(), 10);
 
             Assert.AreEqual(5, result.Rating);
         }
