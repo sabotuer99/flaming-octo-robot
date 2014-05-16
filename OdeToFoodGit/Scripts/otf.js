@@ -44,7 +44,7 @@
 
         var options = {
             url: $a.attr("href"),
-            data: $("form").serialize();
+            data: $("form").serialize(),
             type: "get"
         }
 
