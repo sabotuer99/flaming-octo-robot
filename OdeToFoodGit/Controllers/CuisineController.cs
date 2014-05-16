@@ -13,6 +13,8 @@ namespace OdeToFoodGit.Controllers
 
         public ActionResult Search(string name = "French")
         {
+            throw new Exception("Something terrible has happened");
+
             var message = Server.HtmlEncode(name);
 
             return Content(message);

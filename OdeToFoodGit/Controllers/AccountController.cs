@@ -47,7 +47,7 @@ namespace OdeToFoodGit.Controllers
         //
         // POST: /Account/LogOff
 
-        [HttpPost]
+        //[HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult LogOff()
         {

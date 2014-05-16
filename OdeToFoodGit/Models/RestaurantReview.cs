@@ -14,7 +14,7 @@ namespace OdeToFoodGit.Models
         [Required]
         public int Rating { get; set; }
 
-        [Required]
+        [Required(ErrorMessageResourceType=typeof(OdeToFoodGit.Views.Home.Resources), ErrorMessageResourceName="Greeting")]
         [StringLength(1024)]
         public string Body { get; set; }
 
