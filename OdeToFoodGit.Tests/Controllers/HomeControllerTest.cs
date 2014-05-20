@@ -7,6 +7,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OdeToFoodGit;
 using OdeToFoodGit.Controllers;
 using OdeToFoodGit.Tests.Fakes;
+using OdeToFoodGit.Models;
 
 namespace OdeToFoodGit.Tests.Controllers
 {
@@ -20,12 +21,14 @@ namespace OdeToFoodGit.Tests.Controllers
             var db = new FakeOdeToFoodDb();
             db.AddSet(TestData.Restaurants);
             HomeController controller = new HomeController(db);
+            controller.ControllerContext = new FakeControllerContext();
 
             // Act
             ViewResult result = controller.Index() as ViewResult;
+            IEnumerable<RestaurantListViewModel> model = result.Model as IEnumerable<RestaurantListViewModel>;
 
             // Assert
-            Assert.AreEqual("Modify this template to jump-start your ASP.NET MVC application.", result.ViewBag.Message);
+            Assert.AreEqual(10, model.Count());
         }
 
         [TestMethod]

@@ -119,6 +119,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\RestaurantControllerTest.cs" />
+    <Compile Include="Fakes\FakeControllerContext.cs" />
     <Compile Include="Fakes\FakeOdeToFoodDb.cs" />
     <Compile Include="Features\IRateAlgorithm.cs" />
     <Compile Include="Features\RatingResult.cs" />
