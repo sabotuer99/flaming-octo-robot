@@ -42,8 +42,11 @@ namespace OdeToFoodGit.Migrations
 
         private void SeedMembership()
         {
-            WebSecurity.InitializeDatabaseConnection("DefaultConnection",
-                "UserProfile", "UserId", "UserName", autoCreateTables: true);
+            if (!WebSecurity.Initialized)
+            {
+                WebSecurity.InitializeDatabaseConnection("DefaultConnection",
+                    "UserProfile", "UserId", "UserName", autoCreateTables: true);
+            }
 
             var roles = (SimpleRoleProvider)Roles.Provider;
             var membership = (SimpleMembershipProvider)Membership.Provider;
